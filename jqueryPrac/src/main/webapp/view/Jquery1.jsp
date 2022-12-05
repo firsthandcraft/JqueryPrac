@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<h2 conclick="clickSeoul">클릭하면 사라집니다.</h2>
+<h2 onclick="clickSeoul">클릭하면 사라집니다.</h2>
 
 </body>
 <script>
@@ -24,7 +24,5 @@ $(document).ready(function(){
 	});
 	
 });
-
-
 </script>
 </html>
