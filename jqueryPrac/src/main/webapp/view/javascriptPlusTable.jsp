@@ -4,78 +4,58 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title></title>
-<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<style>
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+function createTable(){
+   var table="<table border='1'>";
+   table+="<tr> <td>1</td> <td>¾ÆÀÌÀ¯</td> </tr>";
+   table+="<tr> <td>2</td> <td>¼Õ¿¬Àç</td> </tr>";
+   table+="<table>";
+   document.getElementById("tableView").innerHTML=table;
+}
 
-</style>
+function clearTable(){
+   document.getElementById("tableView").innerHTML=""; //°ø¹éÃ³¸®
+}
+
+function createTbody(){
+   document.getElementById("tb").innerHTML="<tr> <td>¾ÆÀÌÀ¯</td> <td>11</td> </tr>";
+}
+
+function clearTbody(){
+   document.getElementById("tb").innerHTML="";
+}
+</script>
+</head>
 <body>
-<form class="container">
-<p class="case1">case 1</p>
-<input type="button" value="create" onclick="createTable()"/>
-<input type="button" value="clear" onclick="clearTable()"/>
+case1: <input type="button" value="create" onclick="createTable()">
+      <input type="button" value="clear" onclick="clearTable()">
 <span id="tableView"></span>
 
 <hr>
-<p class="case2">case 2</p>
-<table border="1" id="tableView">
-	<thead>
-		<tr>
-			<th>ì´ë¦„</th>
-			<th>ë‚˜ì´</th>
-		</tr>
-	</thead>
-	<tbody id="tbody">
-		<tr>
-			<td>ë°•ì†Œì˜</td>
-			<td>20</td>
-		</tr>
-		<tr>
-			<td>ë°°í˜„ìš°</td>
-			<td>20</td>
-		</tr>
-	</tbody>
-	<tfoot>
-		<tr>
-			<td>í•©ê³„</td>
-			<td></td>
-		</tr>
-	</tfoot>
+
+case2: <br><br>
+<table border="1">
+   <thead>
+   <!-- <thead>ÅÂ±×´Â HTML Å×ÀÌºí¿¡¼­ Çì´õ ÄÜÅÙÃ÷(header content)µéÀ» ÇÏ³ªÀÇ ±×·ìÀ¸·Î ¹­À» ¶§ »ç¿ëÇÕ´Ï´Ù. -->
+      <tr>
+         <th>ÀÌ¸§</th> <th>³ªÀÌ</th>
+      </tr>
+   </thead>
+   
+   <tbody id="tb"></tbody>
+   <!-- <tbody> ¿ä¼Ò´Â Ç¥ÀÇ ¿©·¯ Çà(<tr>)À» ¹­¾î¼­ Ç¥ º»¹®À» ±¸¼ºÇÕ´Ï´Ù. -->
+   
+   <tfoot>
+   <!-- Ç¥ ¹Ù´Ú±Û ¿ä¼Ò -->
+      <tr>
+         <td><input type="button" value="create" onclick="createTbody()"></td>
+         <td><input type="button" value="clear" onclick="clearTbody()"></td>
+      </tr>
+   </tfoot>
+   
 </table>
-
-<input type="button" value="create" onclick="createTable()"/>
-<input type="button" value="create" onclick="clearTable()"/>
-
-
-</form>
-
 </body>
-
-<script>
-function createTable(){
-	var table="<table border="1">";
-	table+="<tr><td>ë‚¨ì•¼ë¦°</td><td>21</td></tr>":
-	table+="<tr><td>ì •í¬í‰</td><td>25</td></tr>":
-	table+="</table>":
-	document.getElementById("tableView").innerHTML=table;
-};
-function clearTable(){
-	document.getElementById("tableView").innerHTML="";
-};
-
-function createTbody(){
-	document.getElementById("tbody").innerHTML=
-	"<tr>
-		<td>ë°•ì†Œì˜</td>
-		<td>20</td>
-	</tr>";
-};
-function clearTbody(){
-	document.getElementById("tbody").innerHTML=""";
-};
-
-</script>
 
 </html>
