@@ -33,7 +33,7 @@ public class ASynServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		//캐쉬 기능을 사용하지 않겠다. 
 		//브라우저에 있는임시 메모로 안사용하겠다. 캐싱처리 안겠다.
-		response.setHeader("cache-Control","no-cache");
+		response.setHeader("Cache-Control","no-cache");
 		PrintWriter out=response.getWriter();
 		try {
 			Thread.sleep(5000);//고의로 시간 지연
