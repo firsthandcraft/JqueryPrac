@@ -4,29 +4,30 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>text/html2</title>
+<title>bind,on</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
-.slow{display:block;}
+.hide{display:none;}
+
 </style>
 <body>
-<div style="position:relative;">
-<input type="text" id="target" value=""/>
-<button id="text">val|()</button>
-</div>
-<script>
-$(function(e){
-		$("button").click(function(){
-			$("#target").val("eeee");
-			alert($("#target").val());
-		});
-
-	
-});
-</script>
+<button class="add">add</button>
+<button class="remove">remove</button>
+<div></div>
+<br>
+<p class="e hide">ddddddd</p>
 
 </body>
+<script>
+$(function(){
+	$('.add').on('click',function(){
+		$("div").append($('.e'));
+		$('.e').removeClass("hide");
+	});
 
+});
+
+</script>
 </html>

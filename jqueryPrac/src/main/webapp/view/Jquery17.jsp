@@ -4,29 +4,29 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>text/html2</title>
+<title>bind,on</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
-.slow{display:block;}
+.bold{font-weight:bold;}
+.italic{font-style:italic;}
 </style>
 <body>
-<div style="position:relative;">
-<input type="text" id="target" value=""/>
-<button id="text">val|()</button>
-</div>
-<script>
-$(function(e){
-		$("button").click(function(){
-			$("#target").val("eeee");
-			alert($("#target").val());
-		});
-
-	
-});
-</script>
+<span class="bold buttons">볼드</span>
+<span class="italic buttons">이텔릭</span>
 
 </body>
+<!-- bind, on   -->
+<script>
+$(function(){
+	$('.bold').bind('click',function(){
+		alert('볼드버튼');
+	});
+	$('.italic').bind('click',function(){
+		alert("italic button");
+	});
+});
 
+</script>
 </html>

@@ -13,16 +13,18 @@
 </style>
 <body>
 <div style="position:relative;">
-<input type="text" id="target" value=""/>
-<button id="text">val|()</button>
+<p id="target">.</p>
+<button id="text">text</button>
+<button id="html">html</button>
 </div>
 <script>
 $(function(e){
-		$("button").click(function(){
-			$("#target").val("eeee");
-			alert($("#target").val());
+		$("#text").click(function(){
+			$("#target").text("æ»≥Á«œººø‰");
 		});
-
+		$("#html").click(function(){
+			$("#target").html("<strong>æ»≥Á«œººø‰.</strong>");
+		});
 	
 });
 </script>
