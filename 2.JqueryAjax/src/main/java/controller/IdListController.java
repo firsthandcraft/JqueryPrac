@@ -45,7 +45,7 @@ public class IdListController extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
-		PrintWriter out = response.getWriter();
+		//PrintWriter out = response.getWriter();
 		Service service = new ServiceImpl();
 		ArrayList<MemberVO>list=service.idList();
 		request.setAttribute("list", list);

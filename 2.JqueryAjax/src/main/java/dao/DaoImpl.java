@@ -18,7 +18,7 @@ public class DaoImpl implements Dao {
 		db=DBConnect.getInstance();
 	}
 	@Override
-	public ArrayList idList() {
+	public ArrayList<MemberVO> idList() {
 		// TODO Auto-generated method stub
 		String sql="select id from member";
 		ArrayList<MemberVO> data= new ArrayList<MemberVO>();
@@ -27,7 +27,7 @@ public class DaoImpl implements Dao {
 			pstmt=conn.prepareStatement(sql);
 			rs= pstmt.executeQuery();
 			while(rs.next()) {
-				new MemberVO(rs.getString(1));
+				data.add(new MemberVO(rs.getString(1)));
 			}
 			rs.close();
 			pstmt.close();
@@ -42,6 +42,21 @@ public class DaoImpl implements Dao {
 	@Override
 	public MemberVO findMember(String id) {
 		// TODO Auto-generated method stub
+		String sql="select * from member where id=?";
+		try {
+			Connection conn=db.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs= pstmt.executeQuery();
+			if(rs.next()) {
+				return new MemberVO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+			}
+			rs.close();
+			pstmt.close();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
