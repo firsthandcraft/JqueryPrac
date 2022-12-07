@@ -63,7 +63,21 @@ public class DaoImpl implements Dao {
 	@Override
 	public void registerMember(MemberVO vo) {
 		// TODO Auto-generated method stub
-		
+		String sql="insert into member values(?,?,?,?)";
+		try {
+			Connection conn=db.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(1, vo.getPassword());
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(1, vo.getAddress());
+			pstmt.executeUpdate();
+			rs.close();
+			pstmt.close();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
