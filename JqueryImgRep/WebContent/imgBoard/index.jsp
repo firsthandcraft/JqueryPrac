@@ -76,7 +76,7 @@
 		 var title=$("#title").val();
 		 var writer=$("#writer").val();
 		 var pwd=$("#pwd").val();
-		 var data="num"+num+"&title"+title+"&writer"+writer+"&pwd"+pwd;
+		 var data="num"+num+"&title="+title+"&writer="+writer+"&pwd="+pwd;
 		$.ajax({
 			url:'${pageContext.request.contextPath}/EditController',
 			data:data,
@@ -85,6 +85,7 @@
 				var obj = $.parseJSON(result);
 				var html=makeTbl(obj);
 				$('#t_'+obj.num).replaceWith(html);
+				editReps(num);
 			},
 			error:function(){
 				console.log("ajax error");
@@ -94,6 +95,21 @@
 		$('#upload_form').hide();
 	
 	}
+	var editReps=function(num){
+		var data="img_num"+num;
+		$.ajax({
+			url:'${pageContext.request.contextPath}/GetReps',
+			data:data,
+			type:'get',
+			success:function(result){
+				var reps=$.parseJSON(result);
+				printReps(num,reps);
+			},
+			error:function(){
+				console.log("img_num error");
+			}
+		});
+	};
 	
 	var printReps= function(num,reps){
 		var html="";

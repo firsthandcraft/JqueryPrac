@@ -45,12 +45,13 @@ public class ImgList extends HttpServlet {
 		for(Img i:imgs){
 			ArrayList<Rep> reps= rep_service.getRepsByImg_num(i.getNum());
 			i.setReps(reps);
+			System.out.println(" i : "+i);
 		}
 		/*for( A : B )
 		 * 어쨋든 for문이라 반복문이긴한데, 간단하게 설명을 하자면 
 		 * B에서 차례대로 객체를 꺼내서 A에다가 넣겠다는 것이다.*/
 //		System.out.println("ImgList i:"+ i);
-		System.out.println("ImgList imgs"+imgs);
+		System.out.println("ImgList imgs :"+imgs);
 		request.setAttribute("imgs",imgs);
 		String path="/imgBoard/imgList.jsp/";
 		RequestDispatcher rd= request.getRequestDispatcher(path);

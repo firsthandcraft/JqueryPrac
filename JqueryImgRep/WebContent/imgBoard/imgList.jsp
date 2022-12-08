@@ -9,11 +9,11 @@
 		</c:if>
 		{"num":${i.num},"writer":"${i.writer}", "pwd":"${i.pwd}", "title":"${i.title}", "path":"${i.path}", "u_date":"${i.u_date}"
 		,"reps":[
-			<c:forEach var="i" items="${reps}"varStatus="status">
+			<c:forEach var="r" items="${reps}"varStatus="status">
 			<c:if test="${not status.first}">
 			,
 			</c:if>
-			{"num":${i.num},"writer":"${i.writer}","content":"${i.content}","img_num":${i.img_num}}
+			{"num":${r.num},"writer":"${r.writer}","content":"${r.content}","img_num":${r.img_num}}
 			</c:forEach>
 		]
 		}
