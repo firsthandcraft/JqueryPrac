@@ -53,7 +53,7 @@ public class ImgList extends HttpServlet {
 //		System.out.println("ImgList i:"+ i);
 		System.out.println("ImgList imgs :"+imgs);
 		request.setAttribute("imgs",imgs);
-		String path="/imgBoard/imgList.jsp/";
+		String path="/imgBoard/imgList.jsp";
 		RequestDispatcher rd= request.getRequestDispatcher(path);
 		rd.forward(request, response);
 		

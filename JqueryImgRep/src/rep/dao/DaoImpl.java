@@ -21,7 +21,6 @@ public class DaoImpl implements Dao {
 	}
 	public void insert(Rep rep) {
 		// TODO Auto-generated method stub
-		
 		String sql="insert into reps values(seq_reps.nextval,?,?,?)";
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -37,7 +36,7 @@ public class DaoImpl implements Dao {
 					rs.close();
 				}
 				pstmt.close();
-				conn.close();
+				 
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -63,7 +62,7 @@ public class DaoImpl implements Dao {
 					rs.close();
 				}
 				pstmt.close();
-				conn.close();
+				 
 			} catch(Exception e) {
 				e.printStackTrace();
 			}

@@ -55,7 +55,8 @@ public class WriteController extends HttpServlet {
 		int maxSize=1024*1024*10;
 		int num=service.makeNum();
 		p.setNum(num);
-		String uploadPath="C:\\jqueryprac\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\webapps\\JqueryImgRep";
+//		String uploadPath="C:\\jqueryprac\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\webapps\\JqueryImgRep";
+		String uploadPath=request.getSession().getServletContext().getRealPath("/uploadFile");
 		File upDir=new File(uploadPath);
 		if(!upDir.exists()) {
 			upDir.mkdir();
@@ -75,7 +76,7 @@ public class WriteController extends HttpServlet {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		p.setPath("/JqueryImgRep/"+img);
+		p.setPath("/JqueryImgRep/uploadFile/"+img);
 		service.addImg(p);
 		//get방식으로 넘기겠다.
 		response.sendRedirect("GetController?num="+num);
