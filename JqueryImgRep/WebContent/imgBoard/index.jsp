@@ -19,6 +19,15 @@ $(function(){
 		$("#upload_form").show();	
 		//$("#upload_form").toggle();	
 	});
+	$("#upload_btn").click(function(){
+		var btn_txt=$("#upload_btn").val();
+		if(btn_txt=="save"){
+			save();
+		}else{
+			edit();
+		}
+	});
+	
 	var save =function(){
 		var form=$("#upload_form")[0];
 		var formData = new FormData(form);
@@ -27,7 +36,7 @@ $(function(){
 			data:formData,
 			processData:false,
 			contentType:false,
-			type:'POST',
+			type:'POST', 
 			success:function(result){
 				var obj=$.parseJSON(result);
 				var html=makeTbl(obj);

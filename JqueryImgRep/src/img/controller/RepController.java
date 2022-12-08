@@ -36,8 +36,19 @@ public class RepController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-
+		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
+		Service service= new ServiceImpl();
+		Rep rep=new Rep();
+		rep.setWriter(request.getParameter("writer"));
+		rep.setContent(request.getParameter("content"));
+		rep.setImg_num(Integer.parseInt(request.getParameter("img_num")));
+		service.addRep(rep);
+		//
+		ArrayList<Rep> reps= service.getRepsByImg_num(rep.getImg_num());
+		request.setAttribute("reps",reps);
+		RequestDispatcher rd= request.getRequestDispatcher("imgBoard/repList.jsp");
+		rd.forward(request, response);
 	}
 
 	/**

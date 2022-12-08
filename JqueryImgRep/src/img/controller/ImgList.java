@@ -36,7 +36,10 @@ public class ImgList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
+		Service service= new ServiceImpl();
+		//이미지 출력 댓글 출력
 	}
 
 	/**

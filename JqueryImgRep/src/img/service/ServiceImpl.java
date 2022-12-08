@@ -16,36 +16,36 @@ public class ServiceImpl implements Service {
 
 	public void addImg(Img img) {
 		// TODO Auto-generated method stub
-		
+		dao.insert(img);
 	}
 
 	public ArrayList<Img> getAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.selectAll();
 	}
 
 	@Override
 	public int makeNum() {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.makeNum();
 	}
 
 	@Override
 	public Img getImg(int num) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.select(num);
 	}
 
 	@Override
 	public int delImg(int num) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.delete(num);
 	}
 
 	@Override
 	public int editImg(Img i) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.update(i);
 	}
 
 }

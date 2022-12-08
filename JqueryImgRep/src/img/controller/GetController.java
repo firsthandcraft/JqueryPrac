@@ -35,7 +35,12 @@ public class GetController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		Service service= new ServiceImpl();
+		int num= Integer.parseInt(request.getParameter("num"));
+		Img i=service.getImg(num);
+		request.setAttribute("i",i);
+		RequestDispatcher rd= request.getRequestDispatcher("/imgBoard/addImg.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
