@@ -9,6 +9,8 @@
 <title>Index</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+//makeTbl함수 .  리스트 데이터 추출
+//스크립트로 테이블을 삽입시 자동적으로 tbody 가 삽입된다.
 var makeTbl=function(obj){
 	var html="<table id='t_"+obj.num+"' border='1'>";
 	html+="<tr><th>num</th><td><input type='text'name='num' value='"+obj.num+"'></td></tr>";
@@ -23,30 +25,33 @@ var makeTbl=function(obj){
 	html+="<div id='reps_"+obj.num+"'>";
 			if(obj.reps!="undefined"&&obj.reps!=null){
 				for(x=0;x<obj.reps.length;i++){
-					html+="댓글 :"+obj.reps[x].content+"(작성자:"+obj.reps[x].writer+")<br>";
+					html+="댓글 :"+obj.reps[x].content+"(작성자 :"+obj.reps[x].writer+")<br>";
 					
-				}
-			}
+				};
+			};
 	html+="</div>";		
 	html+="</td></tr>";		
 	html+="</table>";
 	return html;
 }
+//makeTbl 함수 호출
 var makeList=function(arr){
 	for(i=0,i<arr.length;i++;){
 		var html=makeTbl(arr[i]);
 		$("#imglist").append(html);
 	};
 };
+
+//등록 함수
 var save =function(){
 	var form=$("#upload_form")[0];
 	var formData = new FormData(form);
 	$.ajax({
 		url:'${pageContext.request.contextPath}/WriteController',
-		data:formData,
-		processData:false,
-		contentType:false,
-		type:'POST', 
+		data: formData,
+		processData: false,
+		contentType: false,
+		type: 'POST', 
 		success:function(result){
 			var obj=$.parseJSON(result);
 			var html=makeTbl(obj);
@@ -58,39 +63,41 @@ var save =function(){
 	});
 	$("#upload_form").hide();
 };
+//수정 함수
 var edit=function(){
 	 var num=$("#num").val();
 	 var title=$("#title").val();
 	 var writer=$("#writer").val();
 	 var pwd=$("#pwd").val();
-	 var data="num"+num+"&title="+title+"&writer="+writer+"&pwd="+pwd;
+	 var data="num="+num+"&title="+title+"&writer="+writer+"&pwd="+pwd;
 	$.ajax({
 		url:'${pageContext.request.contextPath}/EditController',
 		data:data,
-		type:'get',
+		type:'POST',
 		success:function(result){
 			var obj = $.parseJSON(result);
 			var html=makeTbl(obj);
-			$('#t_'+obj.num).replaceWith(html);
-			editReps(num);
+			$('#t_'+obj.num).replaceWith(html);//t_테이블 넘버를 가져오고 html 의 makeTbl함수 호출하고 바꾼다
+			editReps(num);//editReps함수 호출
 		},
 		error:function(){
-			console.log("ajax error");
+			console.log("edit error");
 		}
 	});
 	$('#upload_btn').val("save");
 	$('#upload_form').hide();
 
 }
+//editReps함수
 var editReps=function(num){
-	var data="img_num"+num;
+	var data="img_num="+num;
 	$.ajax({
 		url:'${pageContext.request.contextPath}/GetReps',
 		data:data,
 		type:'get',
 		success:function(result){
 			var reps=$.parseJSON(result);
-			printReps(num,reps);
+			printReps(num,reps);//printReps함수 호출 reps는 댓글에 관한 거임
 		},
 		error:function(){
 			console.log("img_num error");
@@ -100,20 +107,25 @@ var editReps=function(num){
 var printReps= function(num,reps){
 	var html="";
 	for(i=0;i<reps.length;i++){
-		html+="댓글 : "+reps[i].content+"작성자 : "+reps[i].writer+")<br>";
+		html+="댓글 : "+reps[i].content+"(작성자 : "+reps[i].writer+")<br>";
 	}
 	$("#reps_"+num).html(html);
 };
+//
+$(function(){
+
+});
+//
 $(function(){
 	$("#upload_form").hide();
 	
 	$.ajax({
-		url:'${pageContext.request.contextPath}/ImgList',
-		type:'get',
-		success:function(result){
-			var arr = $.parseJSON(result);
-			makeList(arr);
-		},
+        url: '${pageContext.request.contextPath }/ImgList',
+        type: 'get',
+        success: function(result){
+        	var arr = $.parseJSON(result);
+        	makeList(arr);
+        },
 		error:function(){
 			console.log("ajax error");
 		}
@@ -123,8 +135,8 @@ $(function(){
 		$("#writer").val('');
 		$("#pwd").val('');
 		$("#file").val('');
-		$("#upload_form").show();	
-		//$("#upload_form").toggle();	
+		//$("#upload_form").show();	
+		$("#upload_form").toggle();	
 	});	
 	$("#upload_btn").click(function(){
 		var btn_txt=$("#upload_btn").val();
@@ -142,7 +154,7 @@ $(document).on("click","input[value='delete']",function(){
 		$.ajax({
 			url:'${pageContext.request.contextPath}/DelController',
 			data:"num="+num,
-			type:'post',
+			type:'POST',
 			success:function(result){
 				var obj=$.parseJSON(result);
 				if(obj.num==0){
@@ -166,7 +178,7 @@ $(document).on("click","input[value='edit']",function(){
 	if(pwd==pwd2){
 		$.ajax({
 			url:'${pageContext.request.contextPath}/GetController',
-			data:"num"+num,//"num="+num
+			data:"num="+num,
 			type:'post',
 			success:function(result){
 				var obj=$.parseJSON(result);
@@ -186,13 +198,14 @@ $(document).on("click","input[value='edit']",function(){
 	}
 });	
 $(document).on("click",".rep",function(){
-	var img_num=$(this).attr(num);
+	var img_num=$(this).attr("num");//""안써서 오류
 	var writer=$("#w_"+img_num).val();
 	var content=$("#r_"+img_num).val();
 	var data="img_num="+img_num+"&writer="+writer+"&content="+content;
 	$.ajax({
 		url:'${pageContext.request.contextPath}/RepController',
 		data:data,
+		
 		type:'post',
 		success:function(result){
 			var arr=$.parseJSON(result);
@@ -236,5 +249,6 @@ $(document).on("click",".rep",function(){
 	<input type="hidden" id="num">
 </form>
 <div id="imglist"></div>
+
 </body>
 </html>

@@ -114,10 +114,10 @@ public class DaoImpl implements Dao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs=pstmt.executeQuery();
-			//
 			if(rs.next()) {
 				return new Img(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDate(6));
 			}
+			
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -141,9 +141,9 @@ public class DaoImpl implements Dao {
 		String sql="delete img where num=?";
 		try{
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1,img.getNum());
-			//
+			pstmt.setInt(1,num);
 			pstmt.executeUpdate();
+			return num;
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -164,14 +164,14 @@ public class DaoImpl implements Dao {
 	public int update(Img img) {
 		// TODO Auto-generated method stub
 		conn=db.getConnection();
-		String sql="update img set writer=?,pwd=?,title=?,path=?,sysdate,where num=?";
+		String sql="update img set writer=?,pwd=?,title=?,u_date=sysdate where num=?";
+
 		try{
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1,img.getWriter());
 			pstmt.setString(2,img.getPwd());
 			pstmt.setString(3,img.getTitle());
-			pstmt.setString(4,img.getPath());
-			pstmt.setInt(5,img.getNum());
+			pstmt.setInt(4,img.getNum());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();

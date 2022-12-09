@@ -53,6 +53,7 @@ public class FindMemberController extends HttpServlet {
 	
 		vo=service.findMember(id);
 		String type =request.getParameter("type");
+		
 		String text=(vo==null&&id.isEmpty())? "중복 또는 공백":"사용가능" ;
 		if(type.equals("a")) {
 				out.print(text);

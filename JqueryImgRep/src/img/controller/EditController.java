@@ -38,7 +38,7 @@ public class EditController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		doPost(request, response);
 		
 		
 	}
@@ -48,7 +48,18 @@ public class EditController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
+		Service service= new ServiceImpl();
+		int num = Integer.parseInt(request.getParameter("num"));
+		String writer=request.getParameter("writer");
+		String title=request.getParameter("title");
+		String pwd=request.getParameter("pwd");
+		Img i = new Img(num,writer,pwd,title,null,null);
+		System.out.println("EditController::: i: "+i);
+		service.editImg(i);
+		response.sendRedirect("GetController?num="+num);
+		
 	}
 
 }
