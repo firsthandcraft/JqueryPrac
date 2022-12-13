@@ -12,7 +12,9 @@ var c1=0,c2=0,c3=0;
 //-2.makeSelect 함수 
 var makeSelect=function(arr,loc){
 	var html="<select class ='s' type='"+loc+"'>";
+	html +="<option value=''>선택</option>";
 	for(var i=0; i<arr.length;i++){
+		
 		html +="<option value='"+arr[i].num+"'>"+arr[i].name+"</option>";
 	}
 	html+="</select>";
