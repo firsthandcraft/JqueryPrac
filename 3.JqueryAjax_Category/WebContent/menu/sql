@@ -1,0 +1,142 @@
+/*
+1. 의류 - 남성복-[정장, 바지, 셔츠, 남방]/여성복-[/아동복
+2. 가전 - tv/냉장고/세탁기/공기청정기
+3. 패션잡화 - 신발/악세서리/향수
+4. 가구 - 식탁/소파/침대/화장대
+5. 컴퓨터 - 데스크탑 / 노트북 / 태블릿 / 프린터
+*/
+
+create table cate1(
+num number primary key,
+name varchar2(100) not null
+);
+
+insert into cate1 values(1, '의류');
+insert into cate1 values(2, '가전');
+insert into cate1 values(3, '패션잡화');
+insert into cate1 values(4, '가구');
+insert into cate1 values(5, '컴퓨터');
+
+create table cate2(
+num number primary key,
+name varchar2(100) not null,
+parent_num number references cate1(num)
+);
+
+insert into cate2 values(1, '남성복', 1);
+insert into cate2 values(2, '여성복', 1);
+insert into cate2 values(3, '아동복', 1);
+
+insert into cate2 values(4, 'tv', 2);
+insert into cate2 values(5, '냉장고', 2);
+insert into cate2 values(6, '세탁기', 2);
+insert into cate2 values(7, '공기청정기', 2);
+
+insert into cate2 values(8, '신발', 3);
+insert into cate2 values(9, '악세서리', 3);
+insert into cate2 values(10, '향수', 3);
+
+insert into cate2 values(11, '식탁', 4);
+insert into cate2 values(12, '소파', 4);
+insert into cate2 values(13, '침대', 4);
+insert into cate2 values(14, '화장대', 4);
+
+insert into cate2 values(15, '데스크탑', 5);
+insert into cate2 values(16, '노트북', 5);
+insert into cate2 values(17, '태블릿', 5);
+insert into cate2 values(18, '프린터', 5);
+
+create table cate3(
+num number primary key,
+name varchar2(100) not null,
+parent_num number references cate2(num)
+);
+
+insert into cate3 values(1, '정장', 1);
+insert into cate3 values(2, '청바지', 1);
+insert into cate3 values(3, '셔츠', 1);
+
+insert into cate3 values(4, '원피스', 2);
+insert into cate3 values(5, '투피스', 2);
+insert into cate3 values(6, '쓰리피스', 2);
+
+insert into cate3 values(7, '0~3세용', 3);
+insert into cate3 values(8, '4~5세용', 3);
+insert into cate3 values(9, '6~7세용', 3);
+
+insert into cate3 values(10, '삼성tv', 4);
+insert into cate3 values(11, '엘지tv', 4);
+insert into cate3 values(12, '신상tv', 4);
+
+insert into cate3 values(13, '삼성냉장고', 5);
+insert into cate3 values(14, '엘지냉장고', 5);
+insert into cate3 values(15, '신상냉장고', 5);
+
+insert into cate3 values(16, '삼성세탁기', 6);
+insert into cate3 values(17, '엘지세탁기', 6);
+insert into cate3 values(18, '신상세탁기', 6);
+
+insert into cate3 values(19, '삼성공기청정기', 7);
+insert into cate3 values(20, '엘지공기청정기', 7);
+insert into cate3 values(21, '신상공기청정기', 7);
+
+insert into cate3 values(22, '구두', 8);
+insert into cate3 values(23, '운동화', 8);
+insert into cate3 values(24, '샌들', 8);
+
+insert into cate3 values(25, '목걸이', 9);
+insert into cate3 values(26, '반지', 9);
+insert into cate3 values(27, '귀걸이', 9);
+
+insert into cate3 values(28, '샤넬향수', 10);
+insert into cate3 values(29, '케빈클라인향수', 10);
+insert into cate3 values(30, '디오르향수', 10);
+
+insert into cate3 values(31, '2인식탁', 11);
+insert into cate3 values(32, '3인식탁', 11);
+insert into cate3 values(33, '4인식탁', 11);
+
+insert into cate3 values(34, '2인소파', 12);
+insert into cate3 values(35, '3인소파', 12);
+insert into cate3 values(36, '4인소파', 12);
+
+insert into cate3 values(37, '싱글침대', 13);
+insert into cate3 values(38, '퀸침대', 13);
+insert into cate3 values(39, '킹침대', 13);
+
+insert into cate3 values(40, '대리석화장대', 14);
+insert into cate3 values(41, '원목화장대', 14);
+insert into cate3 values(42, '소형화장대', 14);
+
+insert into cate3 values(43, '삼성데스크탑', 15);
+insert into cate3 values(44, '엘지데스크탑', 15);
+insert into cate3 values(45, '신상데스크탑', 15);
+
+insert into cate3 values(46, '삼성노트북', 16);
+insert into cate3 values(47, '엘지노트북', 16);
+insert into cate3 values(48, '신상노트북', 16);
+
+insert into cate3 values(49, '삼성태블릿', 17);
+insert into cate3 values(50, '엘지태블릿', 17);
+insert into cate3 values(51, '신상태블릿', 17);
+
+insert into cate3 values(52, '삼성프린터', 18);
+insert into cate3 values(53, '엘지프린터', 18);
+insert into cate3 values(54, '신상프린터', 18);
+commit;
+
+create table item(
+num number primary key,
+title varchar2(100) not null,
+price number not null,
+img varchar2(100),
+c1 number,
+c2 number,
+c3 number
+);
+
+create sequence seq_item;
+select * from cate1;
+select * from cate2;
+select * from cate3;
+select * from item;
