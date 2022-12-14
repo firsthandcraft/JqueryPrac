@@ -46,9 +46,12 @@ public class IdListController extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		//PrintWriter out = response.getWriter();
+		
 		Service service = new ServiceImpl();
 		ArrayList<MemberVO>list=service.idList();
+		
 		request.setAttribute("list", list);
+		System.out.println("idlistcontroller list:" +list);
 		String path="2.id_list.jsp";
 		RequestDispatcher dispatcher =request.getRequestDispatcher(path);
 		dispatcher.forward(request, response);

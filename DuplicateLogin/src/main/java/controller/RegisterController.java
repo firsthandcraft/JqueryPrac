@@ -38,11 +38,11 @@ public class RegisterController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		Service service = new ServiceImpl();
 		String id= request.getParameter("id");
-		System.out.println(id);
+		System.out.println("id :"+id);
 		
 		MemberVO vo= service.findMember(id);
 		request.setAttribute("m", vo);
-		System.out.println(vo);
+		System.out.println("vo :"+vo);
 		
 		
 		String path="4.register.jsp";

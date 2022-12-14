@@ -15,7 +15,7 @@ $(function(){
 		alert(data);
 		$.ajax({
 			type:"POST",
-			url:"/2.JqueryAjax/FindMemberController",
+			url:"/2.JqueryAjaxDuplicateLogin01/FindMemberController",
 			data:data,
 			 success:function(data){
 				 alert(data);

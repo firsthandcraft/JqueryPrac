@@ -46,14 +46,15 @@ public class FindMemberController extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		//PrintWriter out = response.getWriter();
+		System.out.println("filnmembercontroller ¿‘º∫");
 		Service service = new ServiceImpl();
 		MemberVO vo = null;
 		String id= request.getParameter("id");
-		System.out.println(id);
+		System.out.println("id : "+id);
 		vo=service.findMember(id);
-		System.out.println(vo);
+		System.out.println("vo:"+vo);
 		request.setAttribute("m", vo);
-		System.out.println(vo);
+		
 		String path="3.member.jsp";
 
 		RequestDispatcher dispatcher =request.getRequestDispatcher(path);
