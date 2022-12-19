@@ -1,0 +1,21 @@
+drop table member;
+drop table board;
+drop sequence seq_board;
+create table member(
+id 	 varchar2(20) primary key,
+pwd	 varchar2(20),
+name	 varchar2(20),
+email	 varchar2(50),
+type 	 number	
+);
+create table board(
+num number primary key,
+writer varchar2(20) references member(id) on delete cascade,
+w_date date,
+title varchar2(100) not null,
+content varchar2(500),
+parent_num number
+);
+create sequence seq_board;
+select * from board;
+select * from member;
