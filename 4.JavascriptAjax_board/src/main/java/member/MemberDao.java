@@ -13,7 +13,7 @@ public class MemberDao {
 	private DBConnect dbconn;
 	private ResultSet rs= null;
 	private PreparedStatement pstmt=null;
-	private Connection conn= null;
+	public Connection conn= null;
 	public void discon() {
 		try {
 			if(rs != null){
@@ -31,6 +31,7 @@ public class MemberDao {
 	}
 
 	public void insert(MemberVo vo) {
+		
 		String sql="insert into member values(?,?,?,?,?)";
 		conn= dbconn.conn();
 		try {

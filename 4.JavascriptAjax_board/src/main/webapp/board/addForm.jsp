@@ -10,7 +10,7 @@
 <h3>글작성</h3>
 
 <a href="${pageContext.request.contextPath}/board/list">글목록</a>
-<form action="${pageContext.request.contextPath}/board/add" method="post"></form>
+<form action="${pageContext.request.contextPath}/board/add" method="post">
 <table border="1">
     <tbody>
         <tr>
@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <th>제목</th>
-            <td><input type="text" name="title" ></td>
+            <td><input type="text" name="title"></td>
         </tr>
         <tr>
             <th>내용</th>
@@ -31,5 +31,6 @@
         </tr>
     </tbody>
 </table>
+</form>
 </body>
 </html>

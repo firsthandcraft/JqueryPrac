@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <th>LOGIN</th>
-                <td><input type="button" value="login"><a href="${pageContext.request.contextPath}/member/join">회원가입</a></td>
+                <td><input type="submit" value="login"><a href="${pageContext.request.contextPath}/member/join">회원가입</a></td>
             </tr>
         </tbody>
     </table>

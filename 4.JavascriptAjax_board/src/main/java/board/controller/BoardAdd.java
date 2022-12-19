@@ -32,7 +32,7 @@ public class BoardAdd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dis= request.getRequestDispatcher("/member/addFrom.jsp");
+		RequestDispatcher dis= request.getRequestDispatcher("/board/addForm.jsp");		
 		dis.forward(request, response);
 	}
 

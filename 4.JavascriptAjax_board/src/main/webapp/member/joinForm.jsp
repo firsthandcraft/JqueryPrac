@@ -42,14 +42,14 @@ const a =()=>{
 <body>
 <h3>회원가입</h3>
 
-<form action="${pageContext.request.contextPath}/member/join" name="f">
+<form action="${pageContext.request.contextPath}/member/join" method="post" name="f">
     <table border="1">
         <tbody>
             <tr>
                 <th>ID</th>
                 <td>
 	                <input type="text" name="id">
-	                <button type="button" value="중복체크"onclick="check()">중복체크</button>
+	                <button type="button" onclick="check()">중복체크</button>
 	                <span id="ch_res"></span>
 	           </td>
             </tr>
@@ -72,7 +72,7 @@ const a =()=>{
             </tr>
             <tr>
                 <th>join</th>
-                <td><input type="button" value="join" onClick="a()"><a href="#">로그인</a></td>
+                <td><input type="button" value="join" onClick="a()"><a href="${pageContext.request.contextPath}/member/loginForm.jsp">로그인</a></td>
             </tr>
         </tbody>
     </table>

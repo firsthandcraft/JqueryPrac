@@ -49,11 +49,9 @@ public class MemLogin extends HttpServlet {
 		String path="/index.jsp";
 		String id= request.getParameter("id");
 		String pwd= request.getParameter("pwd");
-		boolean flag= false;
 		MemberService service= new MemberService();
 		MemberVo vo = service.getMember(id);
 		if(vo!=null && pwd.equals(vo.getPwd())) {
-			flag= true;
 			HttpSession session = request.getSession();
 			session.setAttribute("loginId",id);
 			session.setAttribute("type",vo.getType());

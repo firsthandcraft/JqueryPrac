@@ -54,7 +54,7 @@ public class MemDetail extends HttpServlet {
 		String pwd = request.getParameter("pwd");
 		MemberService service = new MemberService();
 		service.editMember(new MemberVo(id,pwd,null,null,null));
-		response.sendRedirect(request.getContentLength()+"/index.jsp");
+		response.sendRedirect(request.getContextPath()+"/index.jsp");
 }
 
 }

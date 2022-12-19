@@ -60,6 +60,7 @@ public class JoinController extends HttpServlet {
 		String email= request.getParameter("email");
 		String type= request.getParameter("type");
 		MemberVo vo = new MemberVo(id, pwd, name, email, type);
+		System.out.println(vo);
 		MemberService service = new MemberService();
 		service.join(vo);
 		RequestDispatcher dis= request.getRequestDispatcher("/index.jsp");

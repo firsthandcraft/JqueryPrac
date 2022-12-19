@@ -8,14 +8,14 @@
 <title>list</title>
 <script type="text/javascript">
 	const a =(num)=>{
-		const xhttp=new SMLHttpRequest();
+		const xhttp=new XMLHttpRequest();
 		xhttp.onload=()=>{
 			let div = document.getElementById("msg");
 			div.innerHTML=xhttp.responseText;
 			
 		}
 	
-		xhttp.open=("GET","${pageContext.request.countextPath}/board/detail?type=1&num="+num);
+		xhttp.open=("GET","${pageContext.request.contextPath}/board/detail?type='seller'&num="+num);
 		xhttp.send();
 	}
 	const b=()=>{
@@ -38,9 +38,8 @@
        	<tr>
        		<td>${b.num}</td>
        		<td onmouseover="a(${b.num})"onmouseout="b()">
-       		<a href="${pageContext.request.contextPath}/board/detail?type=2&num=${b.num}">${b.title}</a>
+       		<a href="${pageContext.request.contextPath}/board/detail?type=seller&num=${b.num}">${b.title}</a>
        		</td>
-       		<td>${b.title}</td>
        		<td>${b.writer}</td>
        	</tr>
        </c:forEach>
