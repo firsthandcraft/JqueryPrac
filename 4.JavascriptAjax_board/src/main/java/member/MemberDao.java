@@ -14,6 +14,7 @@ public class MemberDao {
 	private ResultSet rs= null;
 	private PreparedStatement pstmt=null;
 	public Connection conn= null;
+	
 	public void discon() {
 		try {
 			if(rs != null){
