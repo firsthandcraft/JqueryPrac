@@ -44,12 +44,14 @@ public class BoardAdd extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		BoardService service =new BoardService();
-		String writer =request.getParameter("writer");
-		String title =request.getParameter("title");
-		String content =request.getParameter("content");
-		service.addBoard(new BoardVo(0,writer,null,title,content,0));
-		response.sendRedirect(request.getContextPath()+"/board/list");		
+		BoardService service = new BoardService();
+		String writer = request.getParameter("writer");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		service.addBoard(new BoardVo(0, writer, null, title, content, 0));
+		
+		response.sendRedirect(request.getContextPath()+"/board/list");
 	}
+
 
 }

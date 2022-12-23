@@ -34,21 +34,21 @@ public class BoardDetail extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("board_detail");
-		response.setContentType("text/html;charset=utf-8");
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		String type=request.getParameter("type");
-		int num=Integer.parseInt(request.getParameter("num"));
+		request.setCharacterEncoding("euc-kr");		
+		response.setCharacterEncoding("euc-kr");
+		response.setContentType("text/html; charset=EUC-KR");
+
+		int type = Integer.parseInt(request.getParameter("type"));
+		int num = Integer.parseInt(request.getParameter("num"));
+
 		BoardService service = new BoardService();
 		BoardVo vo = service.getBoard(num);
-		System.out.println("type"+type);
-		String seller="seller";
-		if(type==seller) {
-			response.getWriter().append("작성일:"+vo.getW_date());
+		if (type == 1) {
+			response.getWriter().append("작성일:" + vo.getW_date());
 		} else {
 			request.setAttribute("vo", vo);
-			RequestDispatcher dis= request.getRequestDispatcher("/board/detail.jsp");
+			RequestDispatcher dis = 
+					request.getRequestDispatcher("/board/detail.jsp");
 			dis.forward(request, response);
 		}
 	}
@@ -60,7 +60,17 @@ public class BoardDetail extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	doPost(request, response);	
+		request.setCharacterEncoding("euc-kr");		
+		response.setCharacterEncoding("euc-kr");
+		response.setContentType("text/html; charset=EUC-KR");
+		
+		BoardService service = new BoardService();
+		int num = Integer.parseInt(request.getParameter("num"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		service.editBoard(new BoardVo(num, "", null, title, content, 0));
+		
+		response.sendRedirect(request.getContextPath()+"/board/list");
 	}
 
 }

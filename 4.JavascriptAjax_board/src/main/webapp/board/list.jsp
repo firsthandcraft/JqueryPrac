@@ -9,19 +9,19 @@
 <script type="text/javascript">
 const a = (num) => {
 	const xhttp = new XMLHttpRequest();
-	xhttp.onload = () => {  //받은 응답을 가지고 처리 코드 작성
-			let div = document.getElementById("msg");
-			div.innerHTML=xhttp.responseText;
-			
-		}
-		xhttp.open=("GET",
-		"${pageContext.request.contextPath}/board/detail?type=seller&num="+num);
-		xhttp.send();
+	xhttp.onload = () => {
+	  //받은 응답을 가지고 처리 코드 작성
+	  let div = document.getElementById("msg");
+	  div.innerHTML=xhttp.responseText;
 	}
-	const b=()=>{
-		let div=document.getElementById("msg");
-		div.innerHTML="";
-	}
+	xhttp.open("GET", 
+	"${pageContext.request.contextPath}/board/detail?type=1&num="+num);
+	xhttp.send();
+}
+const b = () => {
+	let div = document.getElementById("msg");
+	div.innerHTML = "";
+}
 </script>
 </head>
 <body>
@@ -38,8 +38,8 @@ const a = (num) => {
        	<tr>
        		<td>${b.num}</td>
        		<td onmouseover="a(${b.num})"onmouseout="b()">
-       		<a href="${pageContext.request.contextPath}/board/detail?type=seller&num=${b.num}">${b.title}</a>
-       		</td>
+			<a href="${pageContext.request.contextPath }/board/detail?type=2&num=${b.num }">
+       		${b.title }</a></td>
        		<td>${b.writer}</td>
        	</tr>
        </c:forEach>

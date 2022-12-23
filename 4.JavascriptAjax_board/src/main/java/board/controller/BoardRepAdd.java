@@ -40,15 +40,15 @@ public class BoardRepAdd extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		boolean flag=true;
 		try {
-			BoardService service= new BoardService();
-			String writer= request.getParameter("writer");
-			String title= request.getParameter("title");
-			String content= request.getParameter("content");
-			int parent = Integer.parseInt(getInitParameter("parent"));
-			service.addBoard(new BoardVo(0,writer,null,title,content,parent));
-		}catch(Exception e) {
+			BoardService service = new BoardService();
+			String writer = request.getParameter("writer");
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			int parent = Integer.parseInt(request.getParameter("parent"));
+			service.addBoard(new BoardVo(0, writer, null, title, content, parent));
+		} catch (Exception e) {
 			System.out.println(e);
-			flag= false;
+			flag = false;
 		}
 		JSONObject obj=new JSONObject();
 		obj.put("flag",flag);

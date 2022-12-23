@@ -31,7 +31,7 @@ public class BoardDao {
 	}
 
 	public void insert(BoardVo vo) {
-		String sql="insert into board values(seq_board.nextval,?,sysdate,?,?,?)";
+		String sql = "insert into board values(seq_board.nextval, ?, sysdate, ?, ?, ?)";
 		try {
 			conn= dbconn.conn();
 			pstmt=conn.prepareStatement(sql);
@@ -57,9 +57,7 @@ public class BoardDao {
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				lists.add(new BoardVo(rs.getInt(1)
-						,rs.getString(2),rs.getDate(3),rs.getString(4),rs.getString(5),rs.getInt(6)));				
-				
+				lists.add(new BoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getInt(6)));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -71,7 +69,7 @@ public class BoardDao {
 
 	// 글번호로 찾아서 title, content 수정
 	public void update(BoardVo vo) {
-		String sql="update board set title=?,content=? where num=?";
+		String sql = "update board set title=?, content=? where num=?";
 		try {
 			conn= dbconn.conn();
 			pstmt=conn.prepareStatement(sql);
@@ -87,10 +85,33 @@ public class BoardDao {
 	}
 
 	// 페이징. start는 rownum 시작값, end는 rownum 끝값
-	public ArrayList<BoardVo> selectAllPaging(int start, int end) {
-		
-		return null;
-	}
+	// 페이징. start는 rownum 시작값, end는 rownum 끝값
+		public ArrayList<BoardVo> selectAllPaging(int start, int end) {
+			String sql = "select * from (select rownum r, num, writer, " + "title from board order by num desc) "
+					+ "where r between ? and ?";
+			ArrayList<BoardVo> list = new ArrayList<>();
+			Connection conn = dbconn.conn();
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
+					list.add(new BoardVo(rs.getInt(2), rs.getString(3), null, rs.getString(4), null, rs.getInt(6)));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return list;
+		}
 
 	public int getCnt() {
 		String sql="select cont(*) from board";
@@ -115,9 +136,9 @@ public class BoardDao {
 			pstmt.setInt(1,num);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				return new BoardVo(rs.getInt(1),rs.getString(2),rs.getDate(3),
-						rs.getString(4),rs.getString(5),rs.getInt(6));				
-			}
+				return new BoardVo(rs.getInt(1), rs.getString(2), 
+						rs.getDate(3), rs.getString(4), rs.getString(5), rs.getInt(6));
+				}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -134,10 +155,9 @@ public class BoardDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1,writer);
 			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				lists.add(new BoardVo(rs.getInt(1),rs.getString(2),rs.getDate(3),
-						rs.getString(4),rs.getString(5),rs.getInt(6))		
-			);}
+			while (rs.next()) {
+				lists.add(new BoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getInt(6)));
+			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -147,17 +167,16 @@ public class BoardDao {
 	}
 	
 	public ArrayList<BoardVo> selectByTitle(String title) {
-		String sql="select * from board where title like ? and parent_num=0 order by num desc";
+		String sql = "select * from board where title like ? and parent_num=0 order by num desc";
 		ArrayList<BoardVo> lists= new ArrayList<BoardVo>();
 		try {
 			conn= dbconn.conn();
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1,"%"+title+"%");
 			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				lists.add(new BoardVo(rs.getInt(1),rs.getString(2),rs.getDate(3),
-						rs.getString(4),rs.getString(5),rs.getInt(6))		
-			);}
+			while (rs.next()) {
+				lists.add(new BoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getInt(6)));
+			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -167,7 +186,7 @@ public class BoardDao {
 	}
 	
 	public void delete(int num) {
-		String sql="delete from board where id=?";
+		String sql="delete from board where num=?";
 		try {
 			conn= dbconn.conn();
 			pstmt=conn.prepareStatement(sql);
@@ -182,7 +201,7 @@ public class BoardDao {
 	
 	//댓글 검색
 	public ArrayList<BoardVo> selectByParent(int parent_num) {
-		String sql="select * from board where parent_num=? order by num desc";
+		String sql = "select * from board where parent_num=? order by num desc";
 		ArrayList<BoardVo> list= new ArrayList<BoardVo>();
 		try {
 			conn= dbconn.conn();
@@ -190,9 +209,8 @@ public class BoardDao {
 			pstmt.setInt(1, parent_num);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				list.add(new BoardVo(rs.getInt(1),rs.getString(2),rs.getDate(3),
-						rs.getString(4),rs.getString(5),rs.getInt(6))		
-			);}
+				list.add(new BoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getInt(6)));
+			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {

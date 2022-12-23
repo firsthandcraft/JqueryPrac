@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>BoardDetail</title>
+<title>Insert title here</title>
 <style type="text/css">
-.rep_class{border:1px solid #000;}
-
+.rep_class{
+	border:2px solid black;
+}
 </style>
 <script type="text/javascript">
 const mkdiv = (obj) => {
@@ -73,53 +74,42 @@ const a = () => {
 </script>
 </head>
 <body>
-<c:set var = "str" >readonly</c:set>
-<c:if test="${sessionScope.loginId==vo.getwriter}">
-<c:set var = "str" ></c:set>
+<c:set var="str">readonly</c:set>
+<c:if test="${sessionScope.loginId==vo.writer }">
+<c:set var="str"></c:set>
 </c:if>
-<a href="${pageContext.request.contextPath}/board/list">글목록</a>
-<form action="${pageContext.request.contextPath}/board/detail" method="post">
+<h3>상세페이지</h3>
+<a href="${pageContext.request.contextPath }/board/list">글목록</a><br/>
+<form action="${pageContext.request.contextPath }/board/detail" method="post">
 <table border="1">
-    <tbody>
-        <tr>
-            <th>글번호</th>
-            <td><input type="text" name="num" value="${vo.num}" readonly></td>
-        </tr>
-        <tr>
-            <th>작성자</th>
-            <td><input type="text" name="writer" value="${vo.writer}" readonly></td>
-        </tr>
-        <tr>
-            <th>작성일</th>
-            <td><input type="text" name="w_date"value="${vo.w_date}" readonly></td>
-        </tr>
-        <tr>
-            <th>제목</th>
-            <td><input type="text" name="title"value="${vo.title}"${str}></td>
-        </tr>
-        <tr>
-            <th>내용</th>
-            <td><textarea name="content" id="" cols="30" rows="10">${vo.content}</textarea></td>
-        </tr>
-        <tr>
-            <th>수정</th>
-			<td>
-			<c:if test="${sessionScope.loginId==vo.getwriter}">
-			<input type="submit" value="edit">
-			<input type= "button" value="delete" onclick="del()">
-			</c:if>
-			</td>
-		</tr>
-	</tbody>
+<tr><th>글번호</th>
+<td><input type="text" name="num" value="${vo.num }" readonly></td></tr>
+<tr><th>작성자</th>
+<td><input type="text" name="writer" value="${vo.writer }" readonly></td></tr>
+<tr><th>작성일</th>
+<td><input type="text" name="w_date" value="${vo.w_date }" readonly></td></tr>
+<tr><th>제목</th>
+<td><input type="text" name="title" value="${vo.title }" ${str }></td></tr>
+<tr><th>내용</th>
+<td><textarea cols="45" rows="15" name="content" ${str }>${vo.content }</textarea></td></tr>
+<!-- 추가 -->
+<c:if test="${sessionScope.loginId==vo.writer }">
+<tr><th>수정/삭제</th>
+<td>
+	<input type="submit" value="edit">
+	<input type="button" value="delete" onclick="del()">
+</td></tr>
+</c:if>
+<!-- 추가 -->
 </table>
-</form>
-<h4>댓글 작성</h4>
+</form><br/>
+<h3>댓글작성</h3>
 <form name="f">
-	재목:<input type="text" name="title"><br>
-	내용:<input type="text" name="content">
-	<input type= "button" value="댓글작성" onclick="a()">
+제목: <input type="text" name="title"><br/>
+내용: <input type="text" name="content"><br/>
+<input type="button" value="댓글작성" onclick="a()">
 </form>
-<h4>댓글 목록</h4> 
-<div id="replist"></div>
+<h3>댓글목록</h3>
+<div id="repList"></div>
 </body>
 </html>

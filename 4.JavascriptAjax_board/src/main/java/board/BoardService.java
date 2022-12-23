@@ -29,7 +29,7 @@ public class BoardService {
 	}
 	
 	public ArrayList<BoardVo> getByTitle(String title){
-		return dao.selectByWriter(title);
+		return dao.selectByTitle(title);
 	}
 	
 	public void editBoard(BoardVo vo) {
@@ -37,7 +37,7 @@ public class BoardService {
 	}
 	
 	public void delBoard(int num) {
-		
+		dao.delete(num);
 	}
 	
 	//댓글 검색
