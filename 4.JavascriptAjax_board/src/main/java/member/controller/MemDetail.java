@@ -37,6 +37,7 @@ public class MemDetail extends HttpServlet {
 		MemberService service = new MemberService();
 		MemberVo vo = service.getMember(id);
 		request.setAttribute("vo", vo);
+		//검색 결과를 request에 담는다
 		//requestDispatcher 객체 를 생성하여 /member/detail.jsp로 이동
 		RequestDispatcher dis= request.getRequestDispatcher("/member/detail.jsp");
 		dis.forward(request, response);
@@ -53,8 +54,8 @@ public class MemDetail extends HttpServlet {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		MemberService service = new MemberService();
-		service.editMember(new MemberVo(id,pwd,null,null,null));
+		service.editMember(new MemberVo(id, pwd, null, null, 0));
 		response.sendRedirect(request.getContextPath()+"/index.jsp");
-}
+	}
 
 }

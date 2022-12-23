@@ -42,7 +42,7 @@ public class MemberDao {
 			pstmt.setString(2,vo.getPwd());
 			pstmt.setString(3,vo.getName());
 			pstmt.setString(4,vo.getEmail());
-			pstmt.setString(5,vo.getType());
+			pstmt.setInt(5,vo.getType());
 			pstmt.executeUpdate();
 		} catch(SQLIntegrityConstraintViolationException e) {
 			System.out.println("중복된 아이디, 다시 입력하세요.");
@@ -62,7 +62,7 @@ public class MemberDao {
 			pstmt.setString(1,id);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				vo= new MemberVo(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+				vo= new MemberVo(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -109,7 +109,7 @@ public class MemberDao {
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				vos.add(new MemberVo(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));				
+				vos.add(new MemberVo(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5)));				
 				
 			}
 		} catch(SQLException e) {

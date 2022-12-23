@@ -5,12 +5,12 @@ public class MemberVo {
 	private String pwd;
 	private String name;
 	private String email;
-	private String type;
+	private int type;
 
 	public MemberVo() {
 	}
 
-	public MemberVo(String id, String pwd, String name, String email, String type) {
+	public MemberVo(String id, String pwd, String name, String email, int type) {
 		this.id = id;
 		this.pwd = pwd;
 		this.name = name;
@@ -18,11 +18,11 @@ public class MemberVo {
 		this.type = type;
 	}
 
-	public String getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 

@@ -36,7 +36,6 @@ public class BoardList extends HttpServlet {
 		BoardService service= new BoardService();
 		ArrayList<BoardVo>list=service.getAll();
 		request.setAttribute("list",list);
-		System.out.println("2222");
 		RequestDispatcher ds = request.getRequestDispatcher("/board/list.jsp");
 		ds.forward(request, response);
 	}

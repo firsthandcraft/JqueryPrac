@@ -1,33 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>addform</title>
 </head>
 <body>
-<h3>±ÛÀÛ¼º</h3>
+<h3>ê¸€ìž‘ì„±</h3>
 
-<a href="${pageContext.request.contextPath}/board/list">±Û¸ñ·Ï</a>
+<a href="${pageContext.request.contextPath}/board/list">ê¸€ëª©ë¡</a>
 <form action="${pageContext.request.contextPath}/board/add" method="post">
 <table border="1">
     <tbody>
         <tr>
-            <th>ÀÛ¼ºÀÚ</th>
+            <th>ìž‘ì„±ìž</th>
             <td><input type="text" name="writer" value="${sessionScope.loginId}" readonly></td>
         </tr>
         <tr>
-            <th>Á¦¸ñ</th>
+            <th>ì œëª©</th>
             <td><input type="text" name="title"></td>
         </tr>
         <tr>
-            <th>³»¿ë</th>
+            <th>ë‚´ìš©</th>
             <td><textarea name="content" id="" cols="30" rows="10"></textarea></td>
         </tr>
         <tr>
-            <th>ÀÛ¼º</th>
-            <td><input type="submit" value="ÀúÀå"></td>
+            <th>ìž‘ì„±</th>
+            <td><input type="submit" value="ì €ìž¥"></td>
         </tr>
     </tbody>
 </table>

@@ -35,7 +35,21 @@ public class BoardRepList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		int parent=Integer.parseInt(request.getParameter("parent"));
+		BoardService service=new BoardService();
+		ArrayList<BoardVo> reps=service.getByParent(parent);
+		JSONArray arr=new JSONArray();//[{"num":3,"writer":"t"}]
+		for(BoardVo rep:reps) {
+			JSONObject obj=new JSONObject();
+			obj.put("num", rep.getNum());
+			obj.put("writer", rep.getWriter());			
+			obj.put("w_date", rep.getW_date().toString());
+			obj.put("title", rep.getTitle());
+			obj.put("content", rep.getContent());
+			arr.add(obj);
+		}
+		String txt=arr.toJSONString();
+		response.getWriter().append(txt);
 	}
 
 	/**

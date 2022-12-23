@@ -35,6 +35,25 @@ public class BoardRepAdd extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		boolean flag=true;
+		try {
+			BoardService service= new BoardService();
+			String writer= request.getParameter("writer");
+			String title= request.getParameter("title");
+			String content= request.getParameter("content");
+			int parent = Integer.parseInt(getInitParameter("parent"));
+			service.addBoard(new BoardVo(0,writer,null,title,content,parent));
+		}catch(Exception e) {
+			System.out.println(e);
+			flag= false;
+		}
+		JSONObject obj=new JSONObject();
+		obj.put("flag",flag);
+		String txt=obj.toJSONString();
+		response.getWriter().append(txt);
 		
 	}
 

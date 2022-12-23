@@ -1,0 +1,47 @@
+drop table img;
+
+drop table img cascade constraints; 
+
+
+create table img(
+num number primary key,
+writer varchar2(20) ,
+pwd varchar2(20),
+title varchar2(50),
+path varchar2(500),
+u_date date
+);
+
+create sequence seq_img;
+
+create table reps(
+num number primary key,
+writer varchar2(20) ,
+content varchar2(500),
+img_num number references img(num) on delete cascade
+);
+
+create sequence seq_reps;
+
+
+FormData 인터페이스는 XMLHttpRequest.send()로 쉽게 보내질 수 있는 폼 filed와 key / value 쌍을 쉽게 만들 수 있습니다.
+인코딩 type이 "multipart/form-data"로 설정 되어 있으면 폼이 사용하는 것과 같은 포맷으로 사용합니다
+contentType,processData 옵션은 false로 설정해야 합니다
+※processData란 ? 일반적으로 서버에 전달되는 데이터는 query string 형태로 전달되기 때문에)
+
+ex) http://example.com/over/there?title=Main_page&action=raw
+
+data 파라미터로 전달된 데이터를 jquery 내부적으로 query string으로 만듭니다. 파일 전송의 경우 이를 하지 않아야 하고 설정하는 것이 processData : false 입니다.
+
+ 
+
+※contentType란 ? default값이 "application/x-www-form-urlencoded; charset=UTF-8" 입니다.
+
+이를 "multipart/form-data"로 전송이 되게 false로 바꿔주는 역할을 합니다. 
+
+on절
+하나의 이벤트 핸들러에 여러 개의 이벤트를 동시에 연결할 수 있다.
+
+.attr()은 요소(element)의 속성(attribute)의 값을 가져오거나 속성을 추가합니다.
+
+

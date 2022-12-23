@@ -9,7 +9,7 @@
 <title>Index</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-//makeTbl함수 .  리스트 데이터 추출
+//4.makeTbl함수 .  리스트 데이터 추출
 //스크립트로 테이블을 삽입시 자동적으로 tbody 가 삽입된다.
 var makeTbl=function(obj){
 	var html="<table id='t_"+obj.num+"' border='1'>";
@@ -34,7 +34,7 @@ var makeTbl=function(obj){
 	html+="</table>";
 	return html;
 }
-//makeTbl 함수 호출
+//5.makeTbl 함수 호출
 var makeList=function(arr){
 	for(i=0,i<arr.length;i++;){
 		var html=makeTbl(arr[i]);
@@ -42,7 +42,7 @@ var makeList=function(arr){
 	};
 };
 
-//등록 함수
+//3.등록 함수
 var save =function(){
 	var form=$("#upload_form")[0];
 	var formData = new FormData(form);
@@ -54,7 +54,7 @@ var save =function(){
 		type: 'POST', 
 		success:function(result){
 			var obj=$.parseJSON(result);
-			var html=makeTbl(obj);
+			var html=makeTbl(obj);//makeTbl
 			$("#imglist").append(html);
 		},
 		error:function(){
@@ -63,7 +63,7 @@ var save =function(){
 	});
 	$("#upload_form").hide();
 };
-//수정 함수
+//6.수정 함수
 var edit=function(){
 	 var num=$("#num").val();
 	 var title=$("#title").val();
@@ -88,6 +88,7 @@ var edit=function(){
 	$('#upload_form').hide();
 
 }
+//댓글
 //editReps함수
 var editReps=function(num){
 	var data="img_num="+num;
@@ -112,13 +113,11 @@ var printReps= function(num,reps){
 	$("#reps_"+num).html(html);
 };
 //
-$(function(){
 
-});
-//
+// Jquery
 $(function(){
+	//1.이미지 등록을 초반 hide로 설정하였다. 
 	$("#upload_form").hide();
-	
 	$.ajax({
         url: '${pageContext.request.contextPath }/ImgList',
         type: 'get',
@@ -130,11 +129,13 @@ $(function(){
 			console.log("ajax error");
 		}
 	});
+	//2.이미지올리기 버튼
 	$("#addbtn").click(function(){
 		$("#title").val('');
 		$("#writer").val('');
 		$("#pwd").val('');
 		$("#file").val('');
+		//form이 보이게
 		//$("#upload_form").show();	
 		$("#upload_form").toggle();	
 	});	

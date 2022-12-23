@@ -67,8 +67,8 @@ const a =()=>{
             </tr>
             <tr>
                 <th>type</th>
-                <td><label>구매자<input type="radio" checked value="buyer" name="type"></label>
-                	<label>판매자<input type="radio" value="seller" name="type"></label></td>
+                <td><label>구매자<input type="radio" checked value="1" name="type"></label>
+                	<label>판매자<input type="radio" value="2" name="type"></label></td>
             </tr>
             <tr>
                 <th>join</th>

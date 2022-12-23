@@ -76,7 +76,7 @@ public class WriteController extends HttpServlet {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		p.setPath("/JqueryImgRep/uploadFile/"+img);
+		p.setPath("/3.JqueryAjax_Imgboard_Comment/uploadFile/"+img);
 		service.addImg(p);
 		//get방식으로 넘기겠다.
 		response.sendRedirect("GetController?num="+num);

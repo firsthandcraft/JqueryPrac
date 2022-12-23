@@ -46,18 +46,23 @@ public class MemLogin extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		String path="/index.jsp";
 		String id= request.getParameter("id");
 		String pwd= request.getParameter("pwd");
 		MemberService service= new MemberService();
 		MemberVo vo = service.getMember(id);
-		if(vo!=null && pwd.equals(vo.getPwd())) {
-			HttpSession session = request.getSession();
-			session.setAttribute("loginId",id);
-			session.setAttribute("type",vo.getType());
-		}
-		RequestDispatcher dr = request.getRequestDispatcher(path);
-		dr.forward(request, response);
-	}
+		//로그인 처리
+				if(vo != null && pwd.equals(vo.getPwd())) {//로그인 성공
+					//현재 사용중인 세션 반환
+					HttpSession session = request.getSession();
+					session.setAttribute("loginId", id);//로그인 아이디
+					session.setAttribute("type", vo.getType());//로그인 사람의 타입
+				}
+				
+				RequestDispatcher dis = 
+						request.getRequestDispatcher("/index.jsp");
+				dis.forward(request, response);
+				
+			}
+	
 
 }

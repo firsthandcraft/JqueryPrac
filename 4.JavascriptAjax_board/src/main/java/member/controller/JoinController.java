@@ -54,15 +54,16 @@ public class JoinController extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		String id= request.getParameter("id");
-		String pwd= request.getParameter("pwd");
-		String name= request.getParameter("name");
-		String email= request.getParameter("email");
-		String type= request.getParameter("type");
+		// id, pwd, name, email 입력 폼 값 읽어오기
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		int type = Integer.parseInt(request.getParameter("type"));
 		MemberVo vo = new MemberVo(id, pwd, name, email, type);
-		System.out.println(vo);
 		MemberService service = new MemberService();
-		service.join(vo);
+		service.join(vo);// 회원가입 완료
+
 		RequestDispatcher dis= request.getRequestDispatcher("/index.jsp");
 		dis.forward(request, response);
 		

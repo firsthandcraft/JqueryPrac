@@ -7,15 +7,15 @@
 <meta charset="EUC-KR">
 <title>list</title>
 <script type="text/javascript">
-	const a =(num)=>{
-		const xhttp=new XMLHttpRequest();
-		xhttp.onload=()=>{
+const a = (num) => {
+	const xhttp = new XMLHttpRequest();
+	xhttp.onload = () => {  //받은 응답을 가지고 처리 코드 작성
 			let div = document.getElementById("msg");
 			div.innerHTML=xhttp.responseText;
 			
 		}
-	
-		xhttp.open=("GET","${pageContext.request.contextPath}/board/detail?type='seller'&num="+num);
+		xhttp.open=("GET",
+		"${pageContext.request.contextPath}/board/detail?type=seller&num="+num);
 		xhttp.send();
 	}
 	const b=()=>{
@@ -46,6 +46,6 @@
        
     </tbody>
 </table>
-<div id="msg" style="position:absolute;top:100px;left:300px;color:blue;"></div>
+<div id="msg" style="position:absolute;top:100px;left:300px;color:blue"></div>
 </body>
 </html>

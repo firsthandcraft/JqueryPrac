@@ -32,8 +32,8 @@
             <tr>
             	<th></th>
             	<td>
-            		<c:if test="${vo.type=='buyer'}">구매자</c:if>
-            		<c:if test="${vo.type=='seller'}">판매자</c:if>
+					<c:if test="${vo.type==1 }">구매자</c:if>
+					<c:if test="${vo.type==2 }">판매자</c:if>
             	</td>
             </tr>
             <tr>
